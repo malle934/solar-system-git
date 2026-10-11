@@ -15,17 +15,15 @@ jobs:
         steps:
             - name: checkout Repo
             - uses: actions/checkout@v4
-        steps:
+    
             - name: setup nodejs-18
             - uses: actions/setup-node@v3
               with:
                 node-version: 18
 
-        steps:
             - name: install dependencies
             - run: npm install
             
-        steps:
             - name: unit test
             - run: npm test
 
