@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: setup nodejs-18
-        uses: actions/setup-node@v4  # Upgraded to @v4 for better performance and security
+        uses: actions/setup-node@v3  # Upgraded to @v4 for better performance and security
         with:
           node-version: 18
   
