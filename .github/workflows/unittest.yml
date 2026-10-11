@@ -8,7 +8,7 @@ on:
             - 'feature/*'
            
 jobs:
-    Unit testing:
+    Unit_testing:
         name: unit testing
         runs-on: ubuntu-latest
         
