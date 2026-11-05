@@ -1,48 +1,48 @@
 name: Solar System Workflow
 
 on:
-  workflow_dispatch:
+  workflow_dispatch
   push:
     branches:
       - main
       - 'feature/*'
       - 'feature-branch'
-               
+
 env:
-    MONGO_URI: 'mongodb+srv://supercluster.d83jj.mongodb.net/superData'
-    MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
-    MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}      
+  MONGO_URI: 'mongodb+srv://supercluster.d83jj.mongodb.net/superData'
+  MONGO_USERNAME: ${{ vars.MONGO_USERNAME }}
+  MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+
 jobs:
-    Unit_testing:
-        name: unit testing
-        strategy:
-            matrix:
-                nodejs_version: [18,19,20]
-                operating_system: [ubuntu-latest,macos-latest]
-                exclude:
-                    - nodejs_version: 18
-                      operating_system: macos-latest
-        runs-on: ${{ matrix.operating_system}}
-        
-        steps:
-            - name: checkout Repo
-              uses: actions/checkout@v4
+  Unit_testing:
+      name: Unit_testing
+      strategy:
+        matrix:
+          nodejs_version: [18,19,20]
+          operating_system: [ubuntu-latest, macos-latest]
+          exclude:
+              nodejs_version: 18
+              operating_system: macos-latest
 
-            - name: setup nodejs-${{ matrix.nodejs_version }}
-              uses: actions/setup-node@v3
-              with:
-                node-version: ${{ matrix.nodejs_version }}
+      runs-on: ${{ matrix.operating_system }}  
 
-            - name: install dependencies
-              run: npm install
-            
-            - name: unit test
-              run: npm test
-            - name: Archive Test Result
-              uses: actions/upload-artifact@v4
-              with:
-                name: Mocha-Test-Result
-                path: test-results.xml  
+      steps:
+        - name: checkout Repo
+          uses: actions/checkout@v4
 
-            
-            
+        - name: setup nodejs_version ${{ matrix.nodejs_version }}
+          uses: actions/setup-node@v3
+          with:
+            node-version: ${{ matrix.nodejs_version }}
+
+        - name: install dependencies
+          run: npm install
+
+        - name: test npm
+          run: npm test
+
+        - name: upload the test results
+          uses: actions/upload-artifact@v4
+          with:
+            name: Mocha-test-result        
+            path: test-result.xml
