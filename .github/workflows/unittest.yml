@@ -68,6 +68,6 @@ jobs:
       - name: archive test result
         uses: actions/upload-artifact@v4
         with:
-          name: Unit-Test-Results
-          path: test-results
+          name: Code-Coverage-Result
+          path: coverage
           retention-days: 5                    
