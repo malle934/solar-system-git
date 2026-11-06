@@ -54,8 +54,8 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
-      - name: setup
-        uses: actions/node@v3
+      - name: setup node 18
+        uses: actions/setup-node@v3
         with:
           node-version: 18
 
